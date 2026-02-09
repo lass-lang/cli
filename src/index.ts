@@ -24,13 +24,13 @@ import { rewriteImportsForExecution } from '@lass-lang/plugin-utils';
 // VERSION (read from package.json at runtime would add complexity, hardcode for now)
 // ============================================================================
 
-const VERSION = '0.0.1';
+export const VERSION = '0.0.1';
 
 // ============================================================================
 // HELP TEXT
 // ============================================================================
 
-const HELP = `
+export const HELP = `
 lass - Compile .lass files to CSS
 
 Usage:
@@ -55,7 +55,7 @@ Examples:
 // ARGUMENT PARSING
 // ============================================================================
 
-interface ParsedArgs {
+export interface ParsedArgs {
   help: boolean;
   version: boolean;
   stdin: boolean;
@@ -63,7 +63,7 @@ interface ParsedArgs {
   inputs: string[];
 }
 
-function parseArgs(argv: string[]): ParsedArgs {
+export function parseArgs(argv: string[]): ParsedArgs {
   const args = argv.slice(2); // Skip node and script path
   const result: ParsedArgs = {
     help: false,
@@ -181,7 +181,7 @@ export async function compileString(source: string, filename = 'stdin.lass'): Pr
 /**
  * Recursively find all .lass files in a directory.
  */
-async function findLassFiles(dir: string): Promise<string[]> {
+export async function findLassFiles(dir: string): Promise<string[]> {
   const entries = await readdir(dir, { withFileTypes: true });
   const files: string[] = [];
 
@@ -201,7 +201,7 @@ async function findLassFiles(dir: string): Promise<string[]> {
 /**
  * Compile all .lass files in a directory to an output directory.
  */
-async function compileDirectory(inputDir: string, outputDir: string): Promise<void> {
+export async function compileDirectory(inputDir: string, outputDir: string): Promise<void> {
   const absoluteInputDir = resolve(inputDir);
   const absoluteOutputDir = resolve(outputDir);
 
@@ -243,7 +243,7 @@ async function compileDirectory(inputDir: string, outputDir: string): Promise<vo
 /**
  * Read all input from stdin.
  */
-async function readStdin(): Promise<string> {
+export async function readStdin(): Promise<string> {
   const chunks: Uint8Array[] = [];
 
   return new Promise((resolve, reject) => {

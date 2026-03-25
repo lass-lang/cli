@@ -334,7 +334,8 @@ describe('compileFile', () => {
     const inputFile = join(testDir, 'style.lass');
     await writeFile(
       inputFile,
-      `const color = "red"
+      `---
+const color = "red"
 ---
 .box { color: {{ color }}; }`
     );
@@ -348,7 +349,8 @@ describe('compileFile', () => {
     const inputFile = join(testDir, 'style.lass');
     await writeFile(
       inputFile,
-      `const spacing = (n) => \`\${n * 4}px\`
+      `---
+const spacing = (n) => \`\${n * 4}px\`
 const colors = { primary: '#3b82f6' }
 ---
 .box {
@@ -376,7 +378,8 @@ describe('compileString', () => {
   });
 
   it('should compile string with preamble', async () => {
-    const css = await compileString(`const x = 42
+    const css = await compileString(`---
+const x = 42
 ---
 .box { width: {{ x }}px; }`);
 
@@ -400,7 +403,8 @@ describe('compileString', () => {
   });
 
   it('should handle array operations in preamble', async () => {
-    const css = await compileString(`const colors = ['red', 'blue', 'green']
+    const css = await compileString(`---
+const colors = ['red', 'blue', 'green']
 ---
 .first { color: {{ colors[0] }}; }
 .last { color: {{ colors[colors.length - 1] }}; }`);

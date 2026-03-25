@@ -101,7 +101,8 @@ describe('@lass-lang/cli', () => {
 
     it('should evaluate preamble expressions from stdin', async () => {
       const { stdout, code } = await runCli(['--stdin'], {
-        stdin: `const color = "red"
+        stdin: `---
+const color = "red"
 ---
 .box { color: {{ color }}; }`,
       });
@@ -126,7 +127,8 @@ describe('@lass-lang/cli', () => {
       const inputFile = join(testDir, 'style.lass');
       await writeFile(
         inputFile,
-        `const size = "16px"
+        `---
+const size = "16px"
 ---
 .text { font-size: {{ size }}; }`
       );
@@ -175,7 +177,8 @@ describe('@lass-lang/cli', () => {
       );
       await writeFile(
         inputFile,
-        `import tokens from './tokens.json' with { type: 'json' }
+        `---
+import tokens from './tokens.json' with { type: 'json' }
 ---
 .btn { color: {{ tokens.colors.primary }}; }`
       );
@@ -196,7 +199,8 @@ describe('@lass-lang/cli', () => {
       );
       await writeFile(
         inputFile,
-        `import { spacing } from './utils.js'
+        `---
+import { spacing } from './utils.js'
 ---
 .box { padding: {{ spacing(4) }}; }`
       );
@@ -299,7 +303,8 @@ describe('@lass-lang/cli', () => {
     });
 
     it('compileString should evaluate preamble expressions', async () => {
-      const css = await compileString(`const x = 42
+      const css = await compileString(`---
+const x = 42
 ---
 .box { width: {{ x }}px; }`);
 

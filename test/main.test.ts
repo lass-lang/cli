@@ -199,7 +199,8 @@ describe('main()', () => {
 
     it('should compile CSS with preamble from stdin', async () => {
       const { Readable } = await import('node:stream');
-      const input = `const color = "red"
+      const input = `---
+const color = "red"
 ---
 .box { color: {{ color }}; }`;
 

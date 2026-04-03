@@ -24,7 +24,7 @@ import { rewriteImportsForExecution } from '@lass-lang/plugin-utils';
 // VERSION (read from package.json at runtime would add complexity, hardcode for now)
 // ============================================================================
 
-export const VERSION = '0.0.1';
+export const VERSION = '0.0.2';
 
 // ============================================================================
 // HELP TEXT
